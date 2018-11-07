@@ -39,19 +39,16 @@ void array_sum() //数列求和（这里只提供从左到右各项相加的思�
 
 void array_sum_precision()  //判断精度的数列求和
 {
-    double sum, sum0;
-    sum = 0;
-    sum0 = 10000;
+    double sum=0;
     long long i = 1;
-    while (fabs(sum - sum0) >= 1e-6)   //精度太高了会导致很长时间运行不完
+    while ((double)1/i >= 1e-6)   //精度太高了会导致很长时间运行不完
     {
-        sum0 = sum;
         if (i % 2 == 0)
             sum -= (double) 1 / i;
         else
             sum += (double) 1 / i;
         i++;
-        printf("sum-sim0 is %lf\n", fabs(sum - sum0));
+        printf("sum-sim0 is %lf\n", (double)1/i);
     }
     printf("The sum of the array is %lf\n", sum);
     printf("n is %lld", i);
