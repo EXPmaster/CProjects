@@ -140,7 +140,7 @@ void day_of_week()
 
 void romantic_number()
 {
-    int number1,number2;
+    int number1,number2,sum=0;
     for(int i=1; i<500; i++)
     {
         number1=sum_yinzi(i);
@@ -148,9 +148,13 @@ void romantic_number()
         {
             number2=sum_yinzi(j);
             if(number1==j && number2==i)
-                printf("(%d,%d)\n",i,j);
+            {
+                printf("(%d,%d)\n", i, j);
+                sum += i+j;
+            }
         }
     }
+    printf("The sum is %d.\n",sum);
 }
 
 int sum_yinzi(int number)
