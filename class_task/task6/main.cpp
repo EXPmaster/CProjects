@@ -25,10 +25,11 @@ FILE *fp;
 int main()
 {
     //reverse_chars();
-    buf8_to_buf10();
+    //buf8_to_buf10();
 	//Cgrade();
 	//getLocation();
 	//searchName();
+	problem5();
 	system("pause");
     return 0; 
 }
@@ -195,11 +196,11 @@ void getLocation()
 void problem5()
 {
 	Alphabet result[100];
-	char string[100], get[100], statistic[52] = { 0 };
+	char string[100], get[100], statistic[52] = { 0 };  //statistic[52]为哈希表，放置52个单词，0代表'A'，51代表'z'
 	int k = 0;
 	puts("Enter a string");
 	fgets(string, 100, stdin);
-	while (!is_questionmark(string))
+	while (!is_questionmark(string)) //找不到问号，重新输入
 	{
 		puts("Cannot find a question mark at the end of the file.");
 		puts("Enter again.");
@@ -207,13 +208,13 @@ void problem5()
 	}
 	//printf("%d\n",strlen(string));
 
-	for (int i = 0; i < strlen(string) - 1; i++)
+	for (int i = 0; i < strlen(string) - 1; i++)  //找出所有字母，放进get[]里
 	{
 		if (string[i] >= 'A' &&string[i] <= 'Z' || string[i] >= 'a' && string[i] <= 'z')
 			get[k++] = string[i];
 	}
 
-	//字母排序
+	//对字母进行排序，以对应哈希表的索引
 	for (int i = 0; i < k - 1; i++)
 	{
 		for (int j = 0; j < k - 1 - i; j++)
@@ -228,15 +229,15 @@ void problem5()
 	}
 	for (int i = 0; i < k; i++)
 	{
-		if (get[i] >= 'A' && get[i] <= 'Z')
+		if (get[i] >= 'A' && get[i] <= 'Z')  //大写字母
 			statistic[get[i] - 'A']++;
 		else
-			statistic[get[i] - 'a' + ('a' - 'A')]++;
+			statistic[get[i] - 'a' + 26]++; //小写字母
 		printf("%c ", get[i]);
 	}
 	puts("");
 
-	//将信息存入结构
+	//将哈希表索引对应的字母存入结构
 	Alphabet temp;
 	int len = 0;
 	for (int i = 0; i < 52; i++)
@@ -274,7 +275,7 @@ void problem5()
 		}
 	}
 
-
+	//输出
 	for (int i = 0; i < len; i++)
 		printf("%c\t%d\n", result[i].name[0], result[i].score);
 
